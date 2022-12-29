@@ -1,0 +1,38 @@
+@inherits UmbracoViewPage<BlockListItem>
+
+@{
+    var row = (FeaturedItemsRow)Model.Content;
+    
+   
+    if(row.FeaturedItems == null || !row.FeaturedItems.Any()) return;
+}
+
+<div class="row">
+
+
+    @foreach(var item in row.FeaturedItems)
+    {
+        var rowItem = (CardItem)item.Content;
+        var rowSettings = (CardItemSettings)item.Settings;
+        if(rowSettings.Hide) continue;
+
+        <div class="col-lg-4 mb-3 d-flex">
+            
+            <div class="card text-center justify-content-around shadow p-3 mb-5 bg-white rounded">
+                  @if(!string.IsNullOrWhiteSpace(rowItem.Title))
+                {
+                    <h1 class="card-title numbers">@rowItem.Numbers</h1>
+                }
+                @if(!string.IsNullOrWhiteSpace(rowItem.Title))
+                {
+                    <h4 class="card-title">@rowItem.Title</h4>
+                }
+                @if(!string.IsNullOrWhiteSpace(rowItem.Description))
+                {
+                    <p class="card-text">@rowItem.Description</p>
+                }
+              
+            </div>
+        </div>
+    }
+    </div>

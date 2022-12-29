@@ -1,0 +1,75 @@
+@inherits UmbracoViewPage
+
+@{
+    var homePage = Model.AncestorOrSelf<HomePage>();
+
+}
+
+<footer class="border-top" style="background: #141728;">
+
+
+    <div class="container" style="color: white;">
+        <div class="row">
+            <div class="col-3"><a class="navbar-brand" href="#">
+                    <img src="https://qa1.invenit.io/assets/images/CB_Logo_white.svg" alt="CashBox_Logo" height="36">
+                </a></div>
+            <div class="col-3">
+                <h3>Company</h3>
+            </div>
+            <div class="col-3">
+                <h3>Legal</h3>
+            </div>
+            <div class="col-3">
+                <h3>Contact Us</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 ">
+                <div class="row text-left">
+                    @if (homePage.FooterSocialLinks != null)
+                    {
+                        <ul class="list-inline text-left">
+                            @foreach (var socialLink in homePage.FooterSocialLinks)
+                            {
+                                <li class="list-inline-item" style="height: 20px;">
+                                    <a href="@socialLink.Url">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fas fa-circle fa-stack-1x"></i>                                           
+                                            <i class="fab fa-@socialLink.Network fa-stack-1x fa-inverse" style="height: 0.75em;"></i> </span>
+                                    </a>
+                                </li>
+
+                            }
+                        </ul>
+                    } 
+                </div>
+                <div class="row d-sm-flex align-items-end align-items-sm-end">
+                    <p>&copy; @Umbraco.GetDictionaryValue("Footer.CopyrightTitle") @DateTime.Now.Year</p>
+                </div>
+            </div>
+            <div class="col-3">
+                <ul class="list-unstyled text-left">
+                    <li> <a href="#">About Us</a></li>
+                    <li><a href="#">Newsroom</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Accessibility</a></li>
+                </ul>
+            </div>
+            <div class="col-3">
+                <ul class="list-unstyled text-left">
+                    <li>Terms</li>
+                    <li>Privacy</li>
+                </ul>
+            </div>
+            <div class="col-3">
+                <ul class="list-unstyled text-left">
+                    <li>+123 456 789</li>
+                    <li>example@email.com</li>
+                    <li>Adres 123/321</li>
+                    <li>City Location</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</footer>

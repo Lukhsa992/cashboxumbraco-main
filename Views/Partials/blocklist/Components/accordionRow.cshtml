@@ -1,0 +1,35 @@
+@inherits UmbracoViewPage<BlockListItem>
+
+@{
+    var row = (AccordionRow)Model.Content;  
+   
+    if(row.AccordionItems == null || !row.AccordionItems.Any()) return;
+    var accordionId = "accordionId-" + row.Key;
+}
+
+
+
+<div class="accordion accordion-flush" id="accordionFlushExample">
+    @{
+        var index = 0;
+        foreach (var item in row.AccordionItems){
+        var rowItem = (AccordionItem)item.Content;
+
+        if(string.IsNullOrWhiteSpace(rowItem.Title) || string.IsNullOrWhiteSpace(rowItem.Description)) continue;
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-@index" aria-expanded="false" aria-controls="flush-collapse-@index">
+       @rowItem.Title
+      </button>
+    </h2>
+    <div id="flush-collapse-@index" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">@rowItem.Description</div>
+    </div>
+  </div>
+        index++;
+      
+    }
+    }
+   
+</div>

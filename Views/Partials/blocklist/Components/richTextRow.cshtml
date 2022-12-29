@@ -1,0 +1,9 @@
+@inherits UmbracoViewPage<BlockListItem>
+
+@{
+    var row = (RichTextRow)Model.Content;
+    var settings = (RichTextRow)Model.Settings;
+}
+
+                         @row.Content
+                  

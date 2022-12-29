@@ -1,0 +1,76 @@
+@inherits UmbracoViewPage<BlockListItem>
+
+@{
+    var row = (SliderRow)Model.Content;
+    
+   
+    if(row.SliderItems == null || !row.SliderItems.Any()) return;
+    var sliderId = "slider-" + row.Key;
+}
+
+
+<div id="@sliderId" class="carousel slide" data-ride="carousel">
+   @{
+    var itemCount = row.SliderItems.Count;  
+        <ol class="carousel-indicators">
+         @for(var slideIndex = 0; slideIndex < itemCount; slideIndex++)
+            {
+            var isFirst = slideIndex == 0;
+            <li data-bs-target="#@sliderId" data-bs-slide-to="@slideIndex" class="@(isFirst ? "active" : null)"></li>
+             }
+        </ol>
+   }
+
+     <div class="carousel-inner">
+            @{
+                var itemIndex = 0;
+                @foreach (var item in row.SliderItems)
+            {
+                var rowItem = (SliderItem)item.Content;
+
+            var isFirstSlide = itemIndex == 0;   
+            var hasTitle =  !string.IsNullOrWhiteSpace(rowItem.Title);
+            var hasDescription =  !string.IsNullOrWhiteSpace(rowItem.Description);
+            var hasName =  !string.IsNullOrWhiteSpace(rowItem.Numbers);
+            
+            <div class="carousel-item @(isFirstSlide ? "active" : null)" style="height: 300px;">
+               <div class="carousel-caption d-none d-md-block">
+                   <div class="row">
+                       <div class="col-3 slider-icon">
+                            @if(rowItem.Image != null) {
+                                <img style="height: 150px;" src="@rowItem.Image.Url()" alt="No Avatar"></img> 
+                            }                            
+                        </div>
+                            <div class="col-9 slider-text">
+                             @if(hasTitle || hasDescription || hasName) {  
+                             
+                            @(hasDescription){
+                                <p style="color: black;">@rowItem.Description</p>
+                            }
+                            @(hasTitle){
+                                 <h5 style="color: black;">@rowItem.Title</h5>
+                            }
+                            @(hasName){
+                                <p style="color: black;">@rowItem.Numbers</p>
+                            }                  
+                        }
+                                   </div>
+                            </div>
+                             </div>
+                               </div>
+                 itemIndex++;
+            }
+          
+            }                 
+     </div>
+            
+         <button class="carousel-control-prev" type="button" data-bs-target="#@sliderId" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#@sliderId" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+   

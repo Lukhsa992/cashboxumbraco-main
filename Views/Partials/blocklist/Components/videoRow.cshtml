@@ -1,0 +1,11 @@
+@inherits UmbracoViewPage<BlockListItem>
+
+@{
+    var row = (VideoRow)Model.Content;
+      var settings = (VideoRowSettings)Model.Settings;
+    if(row.Video == null) return;
+}
+     
+                       <div class="col video-player"><iframe allowfullscreen src="@row.Video.Url()" frameborder="0" style="height: 300px; width: 100%;"></iframe></div>
+                
+          

@@ -1,0 +1,36 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    var content = (ContentModels.Thirds)Model.Content;
+
+    string backgroundImage = content.BackgroundImage != null ? $"background-image: url('{content.BackgroundImage.Url()}')" : "";
+    string backgroundColor = !string.IsNullOrWhiteSpace(content.BackgroundColor) ? $"background-color: #{content.BackgroundColor}" : "";
+    string fontColor = !string.IsNullOrWhiteSpace(content.FontColor) ? $"color: #{content.FontColor}" : "";
+    string style = backgroundImage;
+    if (!string.IsNullOrWhiteSpace(style))
+        style += ";";
+    style += backgroundColor;
+    if (!string.IsNullOrWhiteSpace(style))
+        style += ";";        
+    style += fontColor;
+}
+
+<div class="backgroundImage @(content.IsBetweenSections ? "betweenSections" : "") @(content.MarginTop ? "pt-5" : null) @(content.MarginBottom ? "pb-5" : null)" style="@style">
+    <div class="container">
+        <div class="row @(content.MoveSectionUp ? "tranlsateY" : "") 
+            @(content.RemoveDefaultGap ? "no-gutters" :"") 
+            @(content.MarginTop ?  "pt-5" :content.RemoveMargins ? null : "pt-3")  
+            @(content.MarginBottom ? "pb-5" :content.RemoveMargins ? null : "pb-3")">
+            <div class="col-12 col-md-4 align-self-center">
+                @Html.GetBlockListHtml(content.Column1, "slide")
+            </div>            
+            <div class="col-12 col-md-4 d-flex justify-content-center">
+                @Html.GetBlockListHtml(content.Column2, "slide")
+            </div>            
+            <div class="col-12 col-md-4 align-self-center">
+                @Html.GetBlockListHtml(content.Column3, "slide")
+            </div>
+        </div>
+    </div>
+</div>
+

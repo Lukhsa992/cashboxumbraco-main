@@ -1,0 +1,56 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    var content = (ContentModels.ContactForm)Model.Content;
+
+    string recaptcha = "6LeHE0MiAAAAAAshmqjOUOvYc4VSWjc5VOeVaGz_";
+}
+
+
+<div class="contactHolder pt-5 pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-12">
+                <h3>@content.Title</h3>
+                <p>@content.InfoText</p>
+                <div class="contactInfo">
+                    <ul>
+                        <li>
+                            <span class="svg-helper"><img src="@content.LocationIcon.Url()" /></span> @content.Location
+                        </li>
+                        <li>
+                            <span class="svg-helper"><img src="@content.EmailIcon.Url()" /></span> @content.Email
+                        </li>
+                        <li>
+                            <span class="svg-helper"><img src="@content.PhoneIcon.Url()" /></span> @content.Phone
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="col-md-6 col-12">
+                <form id="contactForm" class="form">
+                    <div class="row justify-content-between">
+                        <input id="contactModel_Name" type="text" name="Name" placeholder="@content.NameLabel" />
+                    <input id="contactModel_Email" type="text" name="Email" placeholder="@content.EmailLabel" />
+                    </div>
+                    <div class="row">
+                    <textarea id="contactModel_Message" name="Messages" placeholder="@content.MessageLabel" rows="8"></textarea>
+                    </div>
+                    <input class="g-recaptcha LightBlueButton button"
+                           data-sitekey="@recaptcha"
+                           data-callback='onSubmit'
+                           data-action='submit'
+                           type="submit" id="sendButton" value="Send" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div hidden>
+    <p id="contactSuccess">@content.SuccessMessage</p>
+    <p id="contactFail">@content.FailMessage</p>
+</div>
+

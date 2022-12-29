@@ -1,0 +1,52 @@
+ @inherits UmbracoViewPage<IHeaderProperties> 
+
+@{  
+    
+    var fontColor = !string.IsNullOrWhiteSpace(Model.FontColor) ? $"color: #{Model.FontColor}" : "";
+    string style = "";
+    if (!string.IsNullOrWhiteSpace(style))
+        style += ";";
+    style += fontColor;
+
+    var background = "";
+
+    if (Model.HeaderImage != null)
+    {
+        background = Model.HeaderImage.Url();
+    } else {
+       background = "/media/fpdlmhq2/wallpaperflarecom_wallpaper.jpg";
+    }
+}      
+    
+       <header class="masthead" style="background-image: url('@background')">
+            <div class="container px-4 px-lg-5 headerContainer" >
+                <div class="row gx-4 gx-lg-6 ">
+                    <div class="col-md-6 col-lg-6 col-xl-6 align-self-center" style="@style">
+                      
+                            <h1>@Model.Title</h1>
+                            @if (string.IsNullOrWhiteSpace(@Model.TitleTwo)) 
+                        {} else
+                        { 
+                            <h1>@Model.TitleTwo</h1>
+                        }
+                            <span class="subheading">@Model.Subtitle</span>
+                          
+
+                        @if (@Model.Icon == null || Model.IconTwo == null) 
+                        {} else
+                        { 
+                            <div class="col-12 apps">
+                            
+
+                             <img src="@Model.Icon.Url()" alt="App store" style="width: 35%;">
+
+                             <img src="@Model.IconTwo.Url()" alt="Play store" style="width: 35%;">
+                        
+                         </div>
+                        }
+                        
+                       
+                    </div>                   
+                </div>
+            </div>
+        </header>

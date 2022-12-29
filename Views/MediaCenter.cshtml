@@ -1,0 +1,42 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.MediaCenter>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+    
+@{
+	var selection = Umbraco.Content(Guid.Parse("56aaf5ef-59af-42a9-8de2-0df08982b9b1"))
+    .ChildrenOfType("blogItem")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate);
+	int news = 0;
+}
+<div class="container">
+<div class="row my-5">
+	
+	@foreach (var item in selection)
+	{   
+		if(news > 3) break;
+		var thumbnail = item.Value<IPublishedContent>("thumbnailImage");
+	    <div class="col-6">
+		<img class="thumbnailImage my-4" src="@thumbnail.Url()" alt="No featured image"> </img>	
+		<h3 class="articleTitle my-4">
+			<a href="@item.Url()">@item.Name()</a>
+		</h3>
+		  <p class="my-3">
+			@item.Value("publishedOn")
+		</p>
+		<p>
+			@item.Value("introText")
+		</p>
+		</div>
+		news++;
+	}
+
+</div>
+</div>
+
+	@Html.GetBlockListHtml(Model.MainContent) 
+

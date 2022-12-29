@@ -1,0 +1,33 @@
+@inherits UmbracoViewPage<BlockListItem>
+
+@{
+    var row = (ProgressRow)Model.Content;  
+   
+    if(row.ProgressItems == null || !row.ProgressItems.Any()) return;
+    var accordionId = "accordionId-" + row.Key;
+}
+
+
+
+
+    @{
+        var index = 0;
+        foreach (var item in row.ProgressItems){
+        var rowItem = (ProgressItem)item.Content;
+
+        if(string.IsNullOrWhiteSpace(rowItem.Title) || rowItem.Percentage == 0) continue;
+
+   <div class="row bar justify-content-between">
+    <div class="col"><p>@rowItem.Title</p></div>
+    <div class="col percentage"><p>@rowItem.Percentage%</p></div>           
+                </div>
+
+                <div class="progress">
+                    <div class="progress-bar progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: @rowItem.Percentage%"></div>
+                </div>
+        index++;
+      
+    }
+    }
+   
+

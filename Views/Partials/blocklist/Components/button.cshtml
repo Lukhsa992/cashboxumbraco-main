@@ -1,0 +1,19 @@
+@inherits UmbracoViewPage<BlockListItem>
+
+@{
+    var row = (Button)Model.Content;
+    var links = row.Link;
+}
+
+ @if (links != null && links.Any())
+                {
+                    foreach (var item in links)
+                    {
+                     <a class="button" href="@item.Url" target="@item.Target">@item.Name</a>
+
+                    }
+
+                }
+
+
+ 

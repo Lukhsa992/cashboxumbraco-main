@@ -1,0 +1,41 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    var content = (ContentModels.Full)Model.Content;
+
+    string backgroundImage = content.BackgroundImage != null ? $"background-image: url('{content.BackgroundImage.Url()}')" : "";
+    string backgroundColor = !string.IsNullOrWhiteSpace(content.BackgroundColor) ? $"background-color: #{content.BackgroundColor}" : "";
+    string fontColor = !string.IsNullOrWhiteSpace(content.FontColor) ? $"color: #{content.FontColor}" : "";
+    string style = backgroundImage;
+    if (!string.IsNullOrWhiteSpace(style))
+        style += ";";
+    style += backgroundColor;
+    if (!string.IsNullOrWhiteSpace(style))
+        style += ";";
+    style += fontColor;
+}
+
+<div class="backgroundImage @(content.IsBetweenSections ? "betweenSections" : "") @(content.MarginTop ? "pt-5" : null) @(content.MarginBottom ? "pb-5" : null)" style="@style">
+    <div class="container">
+        <div class="row @(content.RemoveDefaultGap ? "no-gutters" :"") 
+            @(content.MarginTop ?  "pt-5" :content.RemoveMargins ? null : "pt-3")  
+            @(content.MarginBottom ? "pb-5" :content.RemoveMargins ? null : "pb-3")">
+            @if (content.SideMargins)
+            {
+                <div class="col-2">
+                </div>
+                <div class="col-md-8 col-12">
+                    @Html.GetBlockListHtml(content.Column)
+                </div>
+                <div class="col-2">
+                </div>
+            }
+            else
+            {
+                <div class="col-12">
+                    @Html.GetBlockListHtml(content.Column)
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,288 @@
+@charset "UTF-8";
+@font-face {
+    font-family: FutoSansBold;
+    src: url('../assets/fonts/FutoSans/FutoSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: FutoSans;
+    src: url('../assets/fonts/FutoSans/FutoSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: FutoSansMedium;
+    src: url('../assets/fonts/FutoSans/FutoSans-Medium.ttf') format('truetype');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Roboto:wght@100;400;500;700;900&display=swap');
+body {
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+}
+
+.card {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 40px;
+    height: 300px;
+    width: 500px;
+}
+
+.card-text {
+    color: black;
+}
+
+.card-title.numbers {
+    color: #FFC400;
+}
+
+.card-title {
+    font-weight: 900;
+}
+
+.carousel-control-next,
+.carousel-control-prev,
+.carousel-indicators
+/*, .carousel-indicators */
+
+{
+    filter: invert(100%);
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+}
+
+.video-player {
+    border-radius: 80px;
+    max-width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.h1 {
+    color: white;
+}
+
+footer,
+header {
+    background-color: #141728;
+    padding: 30px;
+}
+
+footer a {
+    text-decoration: none;
+    color: #FFF;
+}
+
+footer a:hover {
+    text-decoration: none;
+    color: #FFC400;
+}
+
+.navbar {
+    background-color: transparent;
+    color: white;
+}
+
+.navbar a {
+    color: white;
+    font-weight: 500;
+}
+
+.navbar a:hover {
+    color: #FFC400;
+}
+
+header h1 {
+    font-family: 'FutoSansBold';
+    font-weight: 900;
+    padding-bottom: 15px;
+}
+
+header span {
+    font-family: 'FutoSansMedium';
+    font-weight: 500;
+}
+
+.apps img {
+    width: 150px;
+    margin-right: 10px;
+    margin-top: 30px;
+}
+
+.slider-text {
+    text-align: left;
+}
+
+.slider-icon {
+    align-self: center;
+}
+
+.accordion-item {
+    margin-bottom: 10px;
+}
+
+.accordion-button {
+    font-weight: 900;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #FFF !important;
+    background-color: #FFC400 !important;
+}
+
+.accordion-button:focus {
+    z-index: 3;
+    border-color: #FFF !important;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem #FFC400 !important;
+}
+
+.accordion-button:link,
+.accordion-button:visited,
+.accordion-button:hover,
+.accordion-button:active {
+    background-color: #FFC400 !important;
+    color: #FFF !important;
+    text-decoration: none !important;
+    border: hidden !important;
+    border-color: #FFF !important;
+    box-shadow: 0px !important;
+}
+
+.masthead {
+    background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("./assets/images/Header_photo.png");
+    background: center;
+}
+
+.progress-bar {
+    background-color: #FFC400;
+}
+
+.percentage {
+    text-align: right;
+}
+
+.bar {
+    margin-top: 20px;
+}
+
+.button {
+    background-color: #FFC400;
+    color: black;
+    font-weight: 700;
+    border-radius: 20px;
+    padding: 10px;
+    padding-bottom: 10px;
+    border-color: #FFC400;
+    border-style: solid;
+    width: 200px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.button:hover {
+    color: white;
+}
+
+.contactInfo img {
+    width: 30px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.contactInfo ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.contactInfo li {
+    margin-top: 10px;
+}
+
+.contactHolder .form textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.contactHolder .form input {
+    width: 45%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.contactHolder .form input:focus-within,
+.contactHolder .form textarea:focus-within {
+    outline-color: #FFC400;
+    border-color: 1px solid #FFC400;
+    box-shadow: 0 0 10px #719ECE;
+}
+
+.contactHolder .form .button {
+    width: 30%;
+}
+
+.accordion-flush .accordion-item {
+    border-right: 0;
+    border-left: 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.fa-stack {
+    color: transparent;
+}
+
+.fa-stack:hover {
+    color: #FFC400;
+}
+
+.is-fixed {
+    background-color: #141728;
+}
+
+.thumbnailImage {
+    height: 400px;
+    width: 100%;
+    border-radius: 25px;
+    object-fit: cover;
+}
+
+.articleTitle a {
+    color: black;
+    text-decoration: none;
+}
+
+.articleTitle a:hover {
+    color: #FFC400;
+    text-decoration: none;
+}
+
+.featuredImageRow {
+    height: 500px;
+}
+
+.featuredImage {
+    max-height: 100%;
+    aspect-ratio: 16/9;
+    object-fit: contain;
+}
+
+.articleDate {
+    text-align: right;
+}
+
+.headerContainer {
+    padding-top: 150px;
+    padding-bottom: 150px;
+}
